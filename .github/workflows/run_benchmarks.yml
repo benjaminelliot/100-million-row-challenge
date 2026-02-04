@@ -65,6 +65,8 @@ jobs:
           ssh "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" "bash -lc '
             set -euo pipefail
             cd ~/benchmark
+          
+            composer install --no-dev
   
             php8.5 tempest data:parse --store
   
