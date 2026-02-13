@@ -63,12 +63,20 @@ jobs:
             cd ~/benchmark
           
             git fetch --prune origin
-            git checkout main
+            
+            git reset --hard
+            git clean -fd
+            
+            git checkout -f main
             git reset --hard origin/main
-          
+            git clean -fd
+            
             git branch -D \"$BRANCH\" 2>/dev/null || true
             git fetch origin \"$FETCH_REF:$BRANCH\"
-            git checkout \"$BRANCH\"
+            git checkout -f \"$BRANCH\"
+            
+            git reset --hard
+            git clean -fd
           '"
 
       - name: Run benchmark
