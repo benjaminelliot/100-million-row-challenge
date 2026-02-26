@@ -411,6 +411,14 @@ final class BenchmarkRunCommand
             }
         }
 
+        if (!isset($data[$branch])) {
+            $data[$branch] = [
+                'submissionTime' => time(),
+                'branch' => $branch,
+                'benchmarkTime' => $newTime,
+            ];
+        }
+
         fclose($handle);
 
         usort($data, fn ($a, $b) => $a['benchmarkTime'] <=> $b['benchmarkTime']);
